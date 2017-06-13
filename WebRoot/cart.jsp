@@ -12,6 +12,7 @@
 <input type="hidden" name="path" value="${ app }"/>
 <%@include file="/_head.jsp" %>
 		<div class="warp">
+			<span>${ msg }</span>
 			<!-- 标题信息 -->
 			<div id="title">
 				<input name="allC" type="checkbox" value="" onclick=""/>
@@ -51,7 +52,7 @@
 					<span id="span_2">￥${ money }</span>
 				</div>
 				<div id="total_2">	
-					<a id="goto_order" href="#">去结算</a>
+					<a id="goto_order" href="${ app }/order_add.jsp">去结算</a>
 				</div>
 			</div>
 		</div>

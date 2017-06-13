@@ -65,6 +65,11 @@
     <servlet-name>CartEditServlet</servlet-name>
     <servlet-class>cn.tedu.web.CartEditServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>OrderAddServlet</servlet-name>
+    <servlet-class>cn.tedu.web.OrderAddServlet</servlet-class>
+  </servlet>
+
 
 
 
@@ -134,6 +139,10 @@
   <servlet-mapping>
     <servlet-name>CartEditServlet</servlet-name>
     <url-pattern>/CartEditServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>OrderAddServlet</servlet-name>
+    <url-pattern>/OrderAddServlet</url-pattern>
   </servlet-mapping>
   
   
