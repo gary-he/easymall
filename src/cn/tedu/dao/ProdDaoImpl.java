@@ -26,7 +26,7 @@ public class ProdDaoImpl implements ProdDao {
 		try {
 			//调用daoutils工具类的update方法，更新对应商品的库存数量
 			return DaoUtils.update("update products set pnum=? where id=?", pnum,pid)>0;
-		} catch (Exception e) {
+		} catch (Exception e) { 
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}

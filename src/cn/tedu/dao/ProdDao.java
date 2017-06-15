@@ -9,7 +9,7 @@ import cn.tedu.domain.Product;
  * @author Administrator
  *
  */
-public interface ProdDao {
+public interface ProdDao extends Dao {
 	/**
 	 * 查找所有所有商品，将商品信息封装进list集合并返回
 	 * @return

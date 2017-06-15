@@ -8,7 +8,7 @@ import cn.tedu.domain.Product;
  * @author Administrator
  *
  */
-public interface ProdService {
+public interface ProdService extends Service {
 	/**
 	 * 查询所有商品信息，返回所有商品组成的list集合
 	 * @return

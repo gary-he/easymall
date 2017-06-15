@@ -24,7 +24,7 @@
 		<input type="text" name=""/>
 		<input type="button" value="搜索"/>
 		<span id="goto">
-			<a id="goto_order" href="#">我的订单</a>
+			<a id="goto_order" href="${ app }/OrderListServlet">我的订单</a>
 			<a id="goto_cart" href="${ app }/cart.jsp">我的购物车</a>
 		</span>
 		<img id="erwm" src="${ app }/img/head/qr.jpg"/>

@@ -69,6 +69,11 @@
     <servlet-name>OrderAddServlet</servlet-name>
     <servlet-class>cn.tedu.web.OrderAddServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>OrderListServlet</servlet-name>
+    <servlet-class>cn.tedu.web.OrderListServlet</servlet-class>
+  </servlet>
+
 
 
 
@@ -143,6 +148,10 @@
   <servlet-mapping>
     <servlet-name>OrderAddServlet</servlet-name>
     <url-pattern>/OrderAddServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>OrderListServlet</servlet-name>
+    <url-pattern>/OrderListServlet</url-pattern>
   </servlet-mapping>
   
   

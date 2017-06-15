@@ -3,7 +3,7 @@ package cn.tedu.service;
 import cn.tedu.domain.User;
 import cn.tedu.exception.MsgException;
 
-public interface UserService {
+public interface UserService extends Service {
 	/**
 	 * 注册用户
 	 * @param user

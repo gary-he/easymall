@@ -40,12 +40,10 @@ private static ComboPooledDataSource pool = new ComboPooledDataSource();
 	 * @throws SQLException
 	 */
 	public static <T> T query(String sql,ResultSetHandler<T> rsh,Object...params) throws SQLException{
-		Connection conn=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
 		try {
-			conn=getConn();
-			ps=conn.prepareStatement(sql);
+			ps=TranManager.getConn().prepareStatement(sql);
 			if(params!=null&&params.length>0){
 				for(int i=0;i<params.length;i++){
 					ps.setObject(i+1, params[i]);
@@ -59,7 +57,7 @@ private static ComboPooledDataSource pool = new ComboPooledDataSource();
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}finally{
-			close(conn, ps, rs);
+			close(null, ps, rs);
 		}
 	}
 	/**
@@ -70,12 +68,10 @@ private static ComboPooledDataSource pool = new ComboPooledDataSource();
 	 * @throws SQLException
 	 */
 	public static int update(String sql,Object...params) throws SQLException{
-		Connection conn=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
 		try {
-			conn=getConn();
-			ps=conn.prepareStatement(sql);
+			ps=TranManager.getConn().prepareStatement(sql);
 			if(params!=null&&params.length>0){
 				for(int i=0;i<params.length;i++){
 					ps.setObject(i+1, params[i]);
@@ -87,7 +83,7 @@ private static ComboPooledDataSource pool = new ComboPooledDataSource();
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}finally{
-			close(conn, ps, rs);
+			close(null, ps, rs);
 		}
 	}
 	/**

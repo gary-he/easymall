@@ -1,5 +1,5 @@
-package cn.tedu.domain;
 
+package cn.tedu.domain;
 import java.util.Date;
 /**
  * 封装订单信息的javabean

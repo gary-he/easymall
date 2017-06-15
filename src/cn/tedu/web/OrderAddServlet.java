@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import cn.tedu.domain.Order;
 import cn.tedu.domain.Product;
 import cn.tedu.domain.User;
-import cn.tedu.domain.orderItem;
+import cn.tedu.domain.OrderItem;
 import cn.tedu.exception.MsgException;
 import cn.tedu.factory.BasicFactory;
 import cn.tedu.service.OrderService;
@@ -44,7 +44,7 @@ public class OrderAddServlet extends HttpServlet {
 		}
 		//定义order,oiList
 		Order order=new Order();
-		List<orderItem> oiList=new ArrayList<orderItem>();
+		List<OrderItem> oiList=new ArrayList<OrderItem>();
 		//封装数据
 		order.setId(UUID.randomUUID().toString());//随机生成唯一的订单号
 		order.setOrderTime(new Date());//记录订单提交时间
@@ -54,9 +54,9 @@ public class OrderAddServlet extends HttpServlet {
 		double money=0;//定义订单金额
 		//遍历购物车，将每件商品与当前订单关联起来，封装到OrderItem，并存入list
 		for(Map.Entry<Product, Integer> entry:cart.entrySet()){
-			orderItem oi=new orderItem();//实例化订单项javabean
-			oi.setOrderId(order.getId());//设置当前订单id
-			oi.setProdId(entry.getKey().getId());//设置当前循环的商品id
+			OrderItem oi=new OrderItem();//实例化订单项javabean
+			oi.setOrder_id(order.getId());//设置当前订单id
+			oi.setProduct_id(entry.getKey().getId());//设置当前循环的商品id
 			oi.setBuyNum(entry.getValue());//设置当前商品的购买数量
 			money+=entry.getKey().getPrice()*entry.getValue();//金额小计
 			oiList.add(oi);//将订单项添加到list

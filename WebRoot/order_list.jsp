@@ -7,23 +7,27 @@
 	<link href="${ app }/css/orderList.css" rel="stylesheet" type="text/css">
 </head>
 <body style="text-align:center;">
+	<c:forEach items="${ oinList }" var="info">
 		<dl class="Order_information">
 			<dt>
 				<h3>订单信息</h3>
 			</dt>
 			<dd>
-				订单编号：1111<br />
-				 下单时间：2015-01-11<br /> 
-				 订单金额：199.0<br /> 
+				订单编号：${ info.order.id }<br />
+				 下单时间：${ info.order.orderTime }<br /> 
+				 订单金额：${ info.order.money }<br /> 
 				 支付状态：
+				 	<c:if test="${ info.order.payState==0 }">
 						<font color="red">未支付</font>&nbsp;&nbsp;&nbsp;
 						<a href="/orderAction_delOrder.action?id=${oi.order.id }"><img src="img/orderList/sc.jpg" width="69" height="19"></a> 
 				 		<a href="/forwardAction_forward.action?path=pay.jsp&id=${oi.order.id }&money=${oi.order.money }"> <img src="img/orderList/zx.jpg" width="69" height="19"></a><br /> 
+					</c:if>
+					<c:if test="${ info.order.payState==1 }">
 						<font color="blue">已支付</font>
-				 所属用户：xxx<br/> 
-				 收货地址：zzz<br/> 
+					</c:if>
+				 收货地址：${ info.order.receiverInfo }<br/> 
 				支付方式：在线支付
-			</dd>
+			</dd> 
 		</dl>
 	
 		<table width="1200" border="0" cellpadding="0"
@@ -35,16 +39,19 @@
 				<th width="214" align="center" valign="middle" bgcolor="#f3f3f3">购买数量</th>
 				<th width="232" align="center" valign="middle" bgcolor="#f3f3f3">总价</th>
 			</tr>
+		<c:forEach items="${ info.map }" var="item">
 			<tr>
 				<td align="center" valign="middle" bgcolor="#FFFFFF">
-					<img src="/prodAction_getImg.action?id=${entry.key.id }" width="90" height="105">
+					<img src="${ app }/ProdImgServlet?imgurl=${ item.key.imgurl }" width="90" height="105">
 				</td>
-				<td align="center" valign="middle" bgcolor="#FFFFFF">aaa</td>
-				<td align="center" valign="middle" bgcolor="#FFFFFF">222元</td>
-				<td align="center" valign="middle" bgcolor="#FFFFFF">2件</td>
-				<td align="center" valign="middle" bgcolor="#FFFFFF">444元</td>
+				<td align="center" valign="middle" bgcolor="#FFFFFF">${ item.key.name }</td>
+				<td align="center" valign="middle" bgcolor="#FFFFFF">${ item.key.price }元</td>
+				<td align="center" valign="middle" bgcolor="#FFFFFF">${ item.value }件</td>
+				<td align="center" valign="middle" bgcolor="#FFFFFF">${ item.key.price*item.value }元</td>
 			</tr>
+		</c:forEach>
 		</table>
-		<div class="Order_price">444元</div>
+		<div class="Order_price">${ info.order.money }元</div>
+	</c:forEach>
 </body>
 </html>

@@ -1,10 +1,13 @@
 package cn.tedu.domain;
+
+import java.io.Serializable;
+
 /**
  * 存放商品信息的javabean
  * @author Administrator
  *
  */
-public class Product {
+public class Product implements Serializable{
 	private String id;
 	private String name;
 	private double price;

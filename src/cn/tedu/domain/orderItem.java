@@ -4,29 +4,29 @@ package cn.tedu.domain;
  * @author Administrator
  *
  */
-public class orderItem {
-	private String orderId;//订单id
-	private String prodId;//商品id
+public class OrderItem {
+	private String order_id;//订单id
+	private String product_id;//商品id
 	private int buyNum;//购买数量
 	
-	public orderItem() {
+	public OrderItem() {
 		super();
 	}
 
-	public String getOrderId() {
-		return orderId;
+	public String getOrder_id() {
+		return order_id;
 	}
 
-	public void setOrderId(String orderId) {
-		this.orderId = orderId;
+	public void setOrder_id(String order_id) {
+		this.order_id = order_id;
 	}
 
-	public String getProdId() {
-		return prodId;
+	public String getProduct_id() {
+		return product_id;
 	}
 
-	public void setProdId(String prodId) {
-		this.prodId = prodId;
+	public void setProduct_id(String product_id) {
+		this.product_id = product_id;
 	}
 
 	public int getBuyNum() {
@@ -36,6 +36,6 @@ public class orderItem {
 	public void setBuyNum(int buyNum) {
 		this.buyNum = buyNum;
 	}
-	
+
 	
 }
