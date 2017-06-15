@@ -4,6 +4,7 @@ import java.util.List;
 
 import cn.tedu.domain.Order;
 import cn.tedu.domain.OrderItem;
+import cn.tedu.domain.Product;
 import cn.tedu.service.Service;
 
 /**
@@ -34,5 +35,11 @@ public interface OrderDao extends Dao {
 	 * @return
 	 */
 	public List<OrderItem> findOrderItemsByUserId(int uid);
+	/**
+	 * 根据id获取对应用户所有订单项的商品
+	 * @param uid
+	 * @return
+	 */
+	public List<Product> findProdsByUserId(int uid);
 	
 }

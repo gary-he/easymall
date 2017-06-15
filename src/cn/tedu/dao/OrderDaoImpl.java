@@ -5,9 +5,9 @@ import java.util.List;
 
 import cn.tedu.domain.Order;
 import cn.tedu.domain.OrderItem;
+import cn.tedu.domain.Product;
 import cn.tedu.utils.BeanListHandler;
 import cn.tedu.utils.DaoUtils;
-
 
 public class OrderDaoImpl implements OrderDao {
 
@@ -57,6 +57,22 @@ public class OrderDaoImpl implements OrderDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ArrayList<OrderItem>();
+		}
+	}
+
+	public List<Product> findProdsByUserId(int uid) {
+		String sql = "SELECT prod.* "
+				+ "FROM orders od,orderitem oi,products prod "
+				+ "WHERE od.id=oi.order_id " 
+				+ "AND oi.product_id=prod.id "
+				+ "AND od.user_id=?";
+
+		try {
+			return DaoUtils.query(sql, new BeanListHandler<Product>(
+					Product.class), uid);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ArrayList<Product>();
 		}
 	}
 

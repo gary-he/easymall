@@ -49,6 +49,8 @@ public class OrderServiceImpl implements OrderService {
 		List<Order> oList=orderDao.findOrdersByUserId(uid);
 		//获取用户的所有订单项集合
 		List<OrderItem> oiList=orderDao.findOrderItemsByUserId(uid);
+		//获取用户的所有订单项对应的商品
+		List<Product> prods=orderDao.findProdsByUserId(uid);
 		//将订单信息分类封装，一个order对应一个orderinfo
 		//遍历订单集合
 		for(Order order:oList){
@@ -63,9 +65,14 @@ public class OrderServiceImpl implements OrderService {
 				//判断orderItem是否属于当前订单
 				if(orderItem.getOrder_id().equals(order.getId())){
 					//根据订单项的商品id查询对应商品信息
-					Product prod=prodDao.findProdById(orderItem.getProduct_id());
-					//将订单项信息添加到map
-					map.put(prod, orderItem.getBuyNum());
+					//Product prod=prodDao.findProdById(orderItem.getProduct_id());
+					//在prods里找出当前订单项对应的商品
+					for(Product prod:prods){
+						if(prod.getId().equals(orderItem.getProduct_id())){
+							//将订单项信息添加到map
+							map.put(prod, orderItem.getBuyNum());
+						}
+					}
 				}
 			}
 			//将订单项信息存进orderInfo
