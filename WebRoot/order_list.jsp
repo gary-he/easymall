@@ -7,6 +7,7 @@
 	<link href="${ app }/css/orderList.css" rel="stylesheet" type="text/css">
 </head>
 <body style="text-align:center;">
+	<%@ include file="_head.jsp" %>
 	<c:forEach items="${ oinList }" var="info">
 		<dl class="Order_information">
 			<dt>
@@ -19,8 +20,8 @@
 				 支付状态：
 				 	<c:if test="${ info.order.payState==0 }">
 						<font color="red">未支付</font>&nbsp;&nbsp;&nbsp;
-						<a href="/orderAction_delOrder.action?id=${oi.order.id }"><img src="img/orderList/sc.jpg" width="69" height="19"></a> 
-				 		<a href="/forwardAction_forward.action?path=pay.jsp&id=${oi.order.id }&money=${oi.order.money }"> <img src="img/orderList/zx.jpg" width="69" height="19"></a><br /> 
+						<a href="${ app }/OrderDeleteServlet?oid=${ info.order.id }"><img src="${ app }/img/orderList/sc.jpg" width="69" height="19"></a> 
+				 		<a href="${ app }/pay.jsp?oid=${ info.order.id }&money=${ info.order.money }"> <img src="${ app }/img/orderList/zx.jpg" width="69" height="19"></a><br /> 
 					</c:if>
 					<c:if test="${ info.order.payState==1 }">
 						<font color="blue">已支付</font>
@@ -53,5 +54,6 @@
 		</table>
 		<div class="Order_price">${ info.order.money }元</div>
 	</c:forEach>
+	<%@ include file="_foot.jsp" %>
 </body>
 </html>

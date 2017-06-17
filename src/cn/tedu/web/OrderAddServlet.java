@@ -66,6 +66,8 @@ public class OrderAddServlet extends HttpServlet {
 			//调用service层的方法添加订单
 			service.addOrder(order,oiList);
 			//添加成功，提示信息并跳转至订单页面
+			//清空购物车
+			request.getSession().setAttribute("cart",null);
 			response.getWriter().write("订单提交成功！3秒后转跳至订单页面。");
 			response.setHeader("refresh", "3;url="+request.getContextPath()+"/OrderListServlet");
 		} catch (MsgException e) {

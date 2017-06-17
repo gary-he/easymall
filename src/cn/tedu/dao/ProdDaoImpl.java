@@ -62,4 +62,13 @@ public class ProdDaoImpl implements ProdDao {
 		}
 	}
 
+	public void changePnum(String pid, int num) {
+		String sql="update products set pnum=pnum+? where id=?";
+		try {
+			DaoUtils.update(sql, num,pid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }

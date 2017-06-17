@@ -27,5 +27,24 @@ public interface OrderService extends Service {
 	 * @return
 	 */
 	public List<OrderInfo> getOrderInfoByUserId(int uid);
+	/**
+	 * 根据订单id删除订单相关信息（从order表中删除一条记录，修改对应商品的库存，删除orderitem表中对应的订单项）
+	 * @param oid 订单id
+	 * @throws MsgException 删除非未支付的订单抛出异常
+	 */
+	public void deleteOrderInfoByOid(String oid) throws MsgException;
+	/**
+	 * 根据订单id查询订单的信息
+	 * @param oid
+	 * @return
+	 */
+	public Order findOrderByOid(String oid);
+	/**
+	 * 修改订单支付状态
+	 * @param r6_Order
+	 * @param paystate 
+	 */
+	@Tran
+	public void updatePaystate(String oid, int paystate);
 
 }

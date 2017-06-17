@@ -83,4 +83,35 @@ public class OrderServiceImpl implements OrderService {
 		return oinList;
 	}
 
+	public void deleteOrderInfoByOid(String oid) throws MsgException {
+		//根据订单id查询订单信息
+		Order order=orderDao.findOrderByOid(oid);
+		//判断订单的支付状态，只有未支付的订单才可以删除
+		if(order.getPayState()!=0){
+			throw new MsgException("只有未支付的订单可以删除");
+		}
+		//未支付：根据订单id查询该订单所有的订单项
+		List<OrderItem> oiList=orderDao.findOrderItemsByOid(oid);
+		//遍历集合
+		for(OrderItem oi:oiList){
+			//还原库存
+			prodDao.changePnum(oi.getProduct_id(),oi.getBuyNum());
+		}
+		//根据订单id删除所有订单项
+		orderDao.deleteOrderItemByOid(oid);
+		//根据订单id删除对应的订单信息
+		orderDao.deleteOrderByOid(oid);
+	}
+
+	public Order findOrderByOid(String oid) {
+		return orderDao.findOrderByOid(oid);
+	}
+
+	public void updatePaystate(String oid,int paystate) {
+		Order order=orderDao.findOrderByOidForUpdate(oid);
+		if(order!=null&&order.getPayState()==0){
+			orderDao.updatePaystate(oid,paystate);
+		}
+	}
+
 }

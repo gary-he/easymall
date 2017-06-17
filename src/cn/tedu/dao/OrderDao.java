@@ -41,5 +41,39 @@ public interface OrderDao extends Dao {
 	 * @return
 	 */
 	public List<Product> findProdsByUserId(int uid);
+	/**
+	 * 根据订单id从orders表中查询对应的订单信息
+	 * @param oid
+	 * @return 对应订单信息对象
+	 */
+	public Order findOrderByOid(String oid);
+	/**
+	 * 根据订单id从orderitem表中查询对应订单下的所有订单项
+	 * @param oid
+	 * @return 订单项集合
+	 */
+	public List<OrderItem> findOrderItemsByOid(String oid);
+	/**
+	 * 根据订单id从orderitem表中删除对应订单下的所有订单项
+	 * @param oid
+	 */
+	public boolean deleteOrderItemByOid(String oid);
+	/**
+	 * 根据订单id从orders表中删除对应订单信息
+	 * @param oid
+	 */
+	public boolean deleteOrderByOid(String oid);
+	/**
+	 * 根据订单id查询订单信息（添加悲观锁版本）
+	 * @param oid
+	 * @return
+	 */
+	public Order findOrderByOidForUpdate(String oid);
+	/**
+	 * 修改订单的支付状态
+	 * @param oid
+	 * @param paystate
+	 */
+	public void updatePaystate(String oid, int paystate);
 	
 }

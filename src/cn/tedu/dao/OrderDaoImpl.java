@@ -6,6 +6,7 @@ import java.util.List;
 import cn.tedu.domain.Order;
 import cn.tedu.domain.OrderItem;
 import cn.tedu.domain.Product;
+import cn.tedu.utils.BeanHandler;
 import cn.tedu.utils.BeanListHandler;
 import cn.tedu.utils.DaoUtils;
 
@@ -73,6 +74,65 @@ public class OrderDaoImpl implements OrderDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ArrayList<Product>();
+		}
+	}
+
+	public Order findOrderByOid(String oid) {
+		String sql="select * from orders where id=?";
+		try {
+			return DaoUtils.query(sql, new BeanHandler<Order>(Order.class), oid);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public List<OrderItem> findOrderItemsByOid(String oid) {
+		String sql="select * from orderitem where order_id=?";
+		try {
+			return DaoUtils.query(sql, new BeanListHandler<OrderItem>(OrderItem.class), oid);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ArrayList<OrderItem>();
+		}
+	}
+
+	public boolean deleteOrderItemByOid(String oid) {
+		String sql="delete from orderitem where order_id=?";
+		try {
+			return DaoUtils.update(sql, oid)>0;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public boolean deleteOrderByOid(String oid) {
+		String sql="delete from orders where id=?";
+		try {
+			return DaoUtils.update(sql, oid)>0;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public Order findOrderByOidForUpdate(String oid) {
+		String sql="select * from orders where id=? for update";
+		try {
+			return DaoUtils.query(sql, new BeanHandler<Order>(Order.class), oid);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public void updatePaystate(String oid, int paystate) {
+		String sql="update orders set paystate=? where id=?";
+		try {
+			DaoUtils.update(sql, paystate,oid);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
